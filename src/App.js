@@ -8,8 +8,9 @@ import DataBase from "./DataBase";
 function App() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const [accounts, setAccounts] = useState([{ hash: "fflqhhpljo", name: "oscar" }]);
-  const [hash, setHash] = useState("");
+  const [accounts, setAccounts] = useState([
+    { hash: "fflqhhpljo", name: "oscar" },
+  ]);
   const [error, setError] = useState("");
 
   const handleUpdateFromApp = (field, value) => {
@@ -89,8 +90,11 @@ function App() {
   const signIn = () => {
     if (validateFields("signIn")) {
       let myHash = hashAlgorithm();
-      let hashExist = accounts.find((account) => account.hash === myHash && account.name === user);
+      let hashExist = accounts.find(
+        (account) => account.hash === myHash && account.name === user
+      );
       if (hashExist) setError(`Bienvenido ${hashExist.name}`);
+      else setError("Campos no válidos");
     }
   };
 
@@ -105,7 +109,6 @@ function App() {
         }}
       >
         <h1>Plataform</h1>
-        {hash}
       </div>
       <div
         style={{
